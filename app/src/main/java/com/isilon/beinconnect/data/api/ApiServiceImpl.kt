@@ -1,5 +1,6 @@
 package com.isilon.beinconnect.data.api
 
+import android.util.Log
 import com.isilon.beinconnect.data.model.Model
 import com.isilon.beinconnect.utils.Constants
 import com.rx2androidnetworking.Rx2AndroidNetworking
