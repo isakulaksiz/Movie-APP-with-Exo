@@ -3,12 +3,11 @@ package com.isilon.beinconnect.ui.main.view
 import android.annotation.SuppressLint
 import android.graphics.Bitmap
 import android.os.Bundle
+import android.os.Handler
 import android.view.*
 import android.widget.ImageView
 import android.widget.LinearLayout
 import androidx.fragment.app.Fragment
-import android.widget.ProgressBar
-import android.widget.Toast
 import androidx.appcompat.content.res.AppCompatResources.getDrawable
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
@@ -40,11 +39,13 @@ class MainFragment : Fragment() {
     private lateinit var mViewPagerAdapter: ViewPagerAdapter
     private var dotscount=0
     private lateinit var dots: Array<ImageView?>
-    private lateinit var linearLayout: LinearLayout
-    private lateinit var viewPager: ViewPager
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        Handler().postDelayed({
+            showViewPagerItems(MainAdapter.mainMovieImg)
+        },2500)
+
     }
 
     override fun onCreateView(
@@ -108,7 +109,7 @@ class MainFragment : Fragment() {
     }
 
     @SuppressLint("SetTextI18n")
-    private fun showViewPagerItems(images: IntArray){
+    private fun showViewPagerItems(images: ArrayList<String>){
 
         mViewPagerAdapter = ViewPagerAdapter(requireContext(), images)
         binding.viewpager.adapter = mViewPagerAdapter
@@ -117,7 +118,7 @@ class MainFragment : Fragment() {
         dots = arrayOfNulls(dotscount)
 
 
-        linearLayout.removeAllViews()
+        binding.lnViewpager.removeAllViews()
 
 
 
@@ -135,7 +136,7 @@ class MainFragment : Fragment() {
                 LinearLayout.LayoutParams.MATCH_PARENT
             )
             params.setMargins(8, 0, 8, 0)
-            linearLayout.addView(dots[i], params)
+            binding.lnViewpager.addView(dots[i], params)
         }
 
         val urlText: String = images[0].toString()
@@ -155,7 +156,7 @@ class MainFragment : Fragment() {
 
         dots[0]!!.setImageDrawable(getDrawable(requireContext(), R.drawable.active_dots))
 
-        viewPager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
+        binding.viewpager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
 
 
             override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {}

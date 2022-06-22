@@ -15,6 +15,7 @@ class MainAdapter(private val data: ArrayList<Result>): RecyclerView.Adapter<Mai
     companion object{
         var mainMovieImg: ArrayList<String> = ArrayList()
     }
+
     class DataViewHolder(view: View): RecyclerView.ViewHolder(view){
         val title: TextView
         val imageViewAvatar: ImageView
@@ -28,6 +29,9 @@ class MainAdapter(private val data: ArrayList<Result>): RecyclerView.Adapter<Mai
             title.text = data.original_title
             Log.e("title", data.original_title)
 
+            if(mainMovieImg.size<3)
+                mainMovieImg.addAll(listOf("http://image.tmdb.org/t/p/w185/"+data.backdrop_path))
+            Log.e("ViewPagerImg", mainMovieImg.toString())
             //mainMovieImg.add("http://image.tmdb.org/t/p/w185/"+data.backdrop_path)
             //Log.e("temp", mainMovieImg.get(0))
             Glide.with(imageViewAvatar.context)
@@ -53,6 +57,9 @@ class MainAdapter(private val data: ArrayList<Result>): RecyclerView.Adapter<Mai
     }
     fun addData(list: List<Result>){
         data.addAll(list)
+    }
+    fun getImageViewPager(data: Result){
+
     }
 
 
