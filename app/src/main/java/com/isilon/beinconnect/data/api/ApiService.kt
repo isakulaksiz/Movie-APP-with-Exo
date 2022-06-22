@@ -7,7 +7,6 @@ import retrofit2.http.GET
 import retrofit2.http.Query
 
 interface ApiService {
-    //@GET("?api_key=${Constants.API_KEY}")
     @GET("")
     fun searchMoviesFromQuery(
         @Query("api_key") key: String,

@@ -7,10 +7,12 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.LinearLayout
 import androidx.viewpager.widget.PagerAdapter
+import com.bumptech.glide.Glide
 import com.isilon.beinconnect.R
 import java.util.*
+import kotlin.collections.ArrayList
 
-class ViewPagerAdapter(context: Context, var images: IntArray) : PagerAdapter() {
+class ViewPagerAdapter(var context: Context, var images: ArrayList<String>) : PagerAdapter() {
     //Layout Inflater
     private var mLayoutInflater: LayoutInflater
     override fun getCount(): Int {
@@ -24,7 +26,9 @@ class ViewPagerAdapter(context: Context, var images: IntArray) : PagerAdapter() 
     override fun instantiateItem(container: ViewGroup, position: Int): Any {
         val itemView: View = mLayoutInflater.inflate(R.layout.item, container, false)
         val imageView = itemView.findViewById<View>(R.id.imageViewMain) as ImageView
-        imageView.setImageResource(images[position])
+        Glide.with(context)
+            .load(images[position])
+            .into(imageView)
         Objects.requireNonNull(container).addView(itemView)
         return itemView
     }
