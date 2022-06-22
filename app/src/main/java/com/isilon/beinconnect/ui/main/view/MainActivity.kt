@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.view.WindowManager
 import android.widget.ProgressBar
 import android.widget.Toast
 import androidx.lifecycle.Observer
@@ -28,51 +29,10 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         AndroidNetworking.initialize(applicationContext)
-    }
-/*
-    private fun setUpObserver() {
-        mainViewModel.data.observe(this, Observer {
-            when (it.status){
-                Status.SUCCESS -> {
-                    progressBar.visibility = View.GONE
-                    it.data?.let { data -> renderList(data.results) }
-                    recyclerView.visibility = View.VISIBLE
-                }
-                Status.LOADING ->{
-                    progressBar.visibility = View.VISIBLE
-                    recyclerView.visibility = View.GONE
-                }
-
-                Status.ERROR -> {
-                    progressBar.visibility = View.GONE
-                    Toast.makeText(this, it.message, Toast.LENGTH_SHORT).show()
-                }
-            }
-        })
-    }
-
-    private fun setUpViewModel() {
-        mainViewModel = ViewModelProviders.of(this,
-            ViewModelFactory(ApiHelper(ApiServiceImpl()))
-        ).get(BeinConnectViewModel::class.java)
-    }
-
-    private fun setUpUI() {
-        recyclerView.layoutManager = LinearLayoutManager(this)
-        adapter = MainAdapter(arrayListOf())
-        recyclerView.addItemDecoration(
-            DividerItemDecoration(recyclerView.context,
-                (recyclerView.layoutManager as LinearLayoutManager).orientation)
+        window.setFlags(
+            WindowManager.LayoutParams.FLAG_FULLSCREEN,
+            WindowManager.LayoutParams.FLAG_FULLSCREEN
         )
 
-        recyclerView.adapter = adapter
-
     }
-
-    private fun renderList(data: List<Result>) {
-        adapter.addData(data)
-        adapter.notifyDataSetChanged()
-    }
-
- */
 }

@@ -1,16 +1,23 @@
 package com.isilon.beinconnect.ui.main.view
 
+import android.annotation.SuppressLint
+import android.graphics.Bitmap
 import android.os.Bundle
+import android.view.*
+import android.widget.ImageView
+import android.widget.LinearLayout
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import android.widget.ProgressBar
 import android.widget.Toast
+import androidx.appcompat.content.res.AppCompatResources.getDrawable
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.viewpager.widget.ViewPager
+import com.bumptech.glide.Glide
+import com.bumptech.glide.request.target.SimpleTarget
+import com.bumptech.glide.request.transition.Transition
 import com.isilon.beinconnect.R
 import com.isilon.beinconnect.data.api.ApiHelper
 import com.isilon.beinconnect.data.api.ApiServiceImpl
@@ -18,6 +25,7 @@ import com.isilon.beinconnect.data.model.Result
 import com.isilon.beinconnect.databinding.FragmentMainBinding
 import com.isilon.beinconnect.ui.base.ViewModelFactory
 import com.isilon.beinconnect.ui.main.adapter.MainAdapter
+import com.isilon.beinconnect.ui.main.adapter.ViewPagerAdapter
 import com.isilon.beinconnect.ui.main.viewmodel.BeinConnectViewModel
 import com.isilon.beinconnect.utils.Constants
 import com.isilon.beinconnect.utils.Status
@@ -29,9 +37,14 @@ class MainFragment : Fragment() {
     private lateinit var mainViewModel: BeinConnectViewModel
     private lateinit var adapter: MainAdapter
 
+    private lateinit var mViewPagerAdapter: ViewPagerAdapter
+    private var dotscount=0
+    private lateinit var dots: Array<ImageView?>
+    private lateinit var linearLayout: LinearLayout
+    private lateinit var viewPager: ViewPager
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
     }
 
     override fun onCreateView(
@@ -77,7 +90,8 @@ class MainFragment : Fragment() {
     }
 
     private fun setUpUI() {
-        binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
+        binding.recyclerView.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+            //LinearLayoutManager(requireContext())
         adapter = MainAdapter(arrayListOf())
         binding.recyclerView.addItemDecoration(
             DividerItemDecoration(binding.recyclerView.context,
@@ -91,5 +105,96 @@ class MainFragment : Fragment() {
     private fun renderList(data: List<Result>) {
         adapter.addData(data)
         adapter.notifyDataSetChanged()
+    }
+
+    @SuppressLint("SetTextI18n")
+    private fun showViewPagerItems(images: IntArray){
+
+        mViewPagerAdapter = ViewPagerAdapter(requireContext(), images)
+        binding.viewpager.adapter = mViewPagerAdapter
+
+        dotscount = mViewPagerAdapter.count
+        dots = arrayOfNulls(dotscount)
+
+
+        linearLayout.removeAllViews()
+
+
+
+
+        for (i in 0 until dotscount) {
+            dots[i] = ImageView(requireContext())
+            dots[i]!!.setImageDrawable(
+                getDrawable(
+                    requireContext(),
+                    R.drawable.non_activedots
+                )
+            )
+            val params = LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.WRAP_CONTENT,
+                LinearLayout.LayoutParams.MATCH_PARENT
+            )
+            params.setMargins(8, 0, 8, 0)
+            linearLayout.addView(dots[i], params)
+        }
+
+        val urlText: String = images[0].toString()
+
+        Glide.with(requireContext())
+            .asBitmap()
+            .load(urlText)
+
+            .into(object : SimpleTarget<Bitmap?>() {
+                override fun onResourceReady(
+                    resource: Bitmap,
+                    transition: Transition<in Bitmap?>?
+                ) {
+
+                }
+            })
+
+        dots[0]!!.setImageDrawable(getDrawable(requireContext(), R.drawable.active_dots))
+
+        viewPager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
+
+
+            override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {}
+            @SuppressLint("SetTextI18n")
+            override fun onPageSelected(position: Int) {
+                var i = 0
+                while (i < dotscount) {
+                    dots[i]!!.setImageDrawable(
+                        getDrawable(
+                            requireContext(),
+                            R.drawable.non_activedots
+                        )
+                    )
+                    val urlText: String = images[i].toString()
+
+                    Glide.with(requireContext())
+                        .asBitmap()
+                        .load(urlText)
+                        .into(object : SimpleTarget<Bitmap?>() {
+                            override fun onResourceReady(
+                                resource: Bitmap,
+                                transition: Transition<in Bitmap?>?
+                            ) {
+
+                            }
+                        })
+                    i++
+                }
+                dots[position]!!.setImageDrawable(
+                    getDrawable(
+                        requireContext(),
+                        R.drawable.active_dots
+                    )
+                )
+            }
+
+            override  fun onPageScrollStateChanged(state: Int) {
+
+            }
+        })
     }
 }

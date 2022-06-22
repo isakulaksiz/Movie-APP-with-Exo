@@ -10,7 +10,7 @@
         android:roundIcon="@drawable/ic_baseline_movie_24"
         android:supportsRtl="true"
         android:usesCleartextTraffic="true"
-        android:theme="@style/Theme.BeinConnect">
+        android:theme="@style/Theme.Design.Light.NoActionBar">
         <activity
             android:name=".ui.main.view.MainActivity"
             android:exported="true">

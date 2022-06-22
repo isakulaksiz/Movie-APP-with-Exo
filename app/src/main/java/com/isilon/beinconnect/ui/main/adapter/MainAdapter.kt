@@ -12,6 +12,9 @@ import com.isilon.beinconnect.R
 import com.isilon.beinconnect.data.model.Result
 
 class MainAdapter(private val data: ArrayList<Result>): RecyclerView.Adapter<MainAdapter.DataViewHolder>()  {
+    companion object{
+        var mainMovieImg: ArrayList<String> = ArrayList()
+    }
     class DataViewHolder(view: View): RecyclerView.ViewHolder(view){
         val title: TextView
         val imageViewAvatar: ImageView
@@ -24,11 +27,13 @@ class MainAdapter(private val data: ArrayList<Result>): RecyclerView.Adapter<Mai
 
             title.text = data.original_title
             Log.e("title", data.original_title)
-            /*
+
+            //mainMovieImg.add("http://image.tmdb.org/t/p/w185/"+data.backdrop_path)
+            //Log.e("temp", mainMovieImg.get(0))
             Glide.with(imageViewAvatar.context)
-                .load(data.XXX)
+                .load("http://image.tmdb.org/t/p/w185/"+data.poster_path)
                 .into(imageViewAvatar)
-             */
+
         }
     }
 
@@ -39,7 +44,6 @@ class MainAdapter(private val data: ArrayList<Result>): RecyclerView.Adapter<Mai
 
     override fun onBindViewHolder(holder: MainAdapter.DataViewHolder, position: Int) {
         holder.bind(data[position])
-
 
     }
 
