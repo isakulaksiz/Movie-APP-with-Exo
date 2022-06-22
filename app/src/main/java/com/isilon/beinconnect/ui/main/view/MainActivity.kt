@@ -6,14 +6,12 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.viewpager.widget.ViewPager
 import com.androidnetworking.AndroidNetworking
 import com.google.android.material.tabs.TabLayout
-import com.google.android.material.tabs.TabLayout.OnTabSelectedListener
-import com.google.android.material.tabs.TabLayout.TabLayoutOnPageChangeListener
 import com.isilon.beinconnect.ui.main.adapter.PagesAdapter
-
 
 class MainActivity : AppCompatActivity() {
     var tabLayout: TabLayout? = null
     var viewPager: ViewPager? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(com.isilon.beinconnect.R.layout.activity_main)
@@ -28,11 +26,11 @@ class MainActivity : AppCompatActivity() {
 
 
         val adapter = PagesAdapter(this, supportFragmentManager, tabLayout!!.tabCount)
-        //viewPager?.setAdapter(adapter)
+        viewPager?.setAdapter(adapter)
 
-        viewPager?.addOnPageChangeListener(TabLayoutOnPageChangeListener(tabLayout))
+        viewPager?.addOnPageChangeListener(TabLayout.TabLayoutOnPageChangeListener(tabLayout))
 
-        tabLayout!!.addOnTabSelectedListener(object : OnTabSelectedListener {
+        tabLayout!!.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
             override fun onTabSelected(tab: TabLayout.Tab) {
                 viewPager?.setCurrentItem(tab.position)
             }

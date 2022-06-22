@@ -29,7 +29,6 @@ class ViewPagerAdapter(var context: Context, var images: ArrayList<String>) : Pa
         Glide.with(context)
             .load(images[position])
             .into(imageView)
-        //imageView.setImageResource(images[position])
         Objects.requireNonNull(container).addView(itemView)
         return itemView
     }
