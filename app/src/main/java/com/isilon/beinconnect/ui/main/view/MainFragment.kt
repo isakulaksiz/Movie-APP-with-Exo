@@ -7,8 +7,8 @@ import android.os.Handler
 import android.view.*
 import android.widget.ImageView
 import android.widget.LinearLayout
-import androidx.fragment.app.Fragment
 import androidx.appcompat.content.res.AppCompatResources.getDrawable
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.DividerItemDecoration
@@ -44,7 +44,7 @@ class MainFragment : Fragment() {
         super.onCreate(savedInstanceState)
         Handler().postDelayed({
             showViewPagerItems(MainAdapter.mainMovieImg)
-        },2500)
+        },1500)
 
     }
 
@@ -53,6 +53,8 @@ class MainFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentMainBinding.inflate(inflater, container, false)
+
+
         return binding.root
     }
 
@@ -60,10 +62,13 @@ class MainFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         setUpUI()
+
         setUpViewModel()
         setUpObserver()
         mainViewModel.fetchMovies(Constants.API_KEY, Constants.FIRST_PAGE)
     }
+
+
     private fun setUpObserver() {
         mainViewModel.data.observe(viewLifecycleOwner, Observer {
             when (it.status){
@@ -98,6 +103,8 @@ class MainFragment : Fragment() {
             DividerItemDecoration(binding.recyclerView.context,
                 (binding.recyclerView.layoutManager as LinearLayoutManager).orientation)
         )
+
+
 
         binding.recyclerView.adapter = adapter
 
