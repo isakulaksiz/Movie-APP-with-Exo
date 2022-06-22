@@ -10,6 +10,7 @@ interface ApiService {
     //@GET("?api_key=${Constants.API_KEY}")
     @GET("")
     fun searchMoviesFromQuery(
+        @Query("api_key") key: String,
         @Query("page") limit: Int
     ): Single<Model>
 }

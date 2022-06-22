@@ -39,7 +39,7 @@ class MainActivity : AppCompatActivity() {
         setUpUI()
         setUpViewModel()
         setUpObserver()
-        mainViewModel.fetchMovies(Constants.FIRST_PAGE)
+        mainViewModel.fetchMovies(Constants.API_KEY,Constants.FIRST_PAGE)
     }
 
     private fun setUpObserver() {
@@ -80,9 +80,9 @@ class MainActivity : AppCompatActivity() {
         recyclerView.adapter = adapter
 
     }
+
     private fun renderList(data: List<Result>) {
-        val list = ArrayList<Result>()
-        list.addAll(data)
-       // adapter.changeData(list)
+        adapter.addData(data)
+        adapter.notifyDataSetChanged()
     }
 }

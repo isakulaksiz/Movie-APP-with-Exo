@@ -23,6 +23,7 @@ class MainAdapter(private val data: ArrayList<Result>): RecyclerView.Adapter<Mai
         fun bind(data: Result){
 
             title.text = data.original_title
+            Log.e("title", data.original_title)
             /*
             Glide.with(imageViewAvatar.context)
                 .load(data.XXX)
@@ -31,12 +32,12 @@ class MainAdapter(private val data: ArrayList<Result>): RecyclerView.Adapter<Mai
         }
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DataViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MainAdapter.DataViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_layout, parent,false)
-        return DataViewHolder(view)
+        return MainAdapter.DataViewHolder(view)
     }
 
-    override fun onBindViewHolder(holder: DataViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: MainAdapter.DataViewHolder, position: Int) {
         holder.bind(data[position])
 
     }
@@ -48,4 +49,6 @@ class MainAdapter(private val data: ArrayList<Result>): RecyclerView.Adapter<Mai
     fun addData(list: List<Result>){
         data.addAll(list)
     }
+
+
 }

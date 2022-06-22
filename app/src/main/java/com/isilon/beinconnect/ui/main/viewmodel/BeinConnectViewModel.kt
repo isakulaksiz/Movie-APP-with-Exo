@@ -14,22 +14,23 @@ class BeinConnectViewModel(private val beinConnectRepository: BeinConnectReposit
     val data = MutableLiveData<Resource<Model>>()
     private val compositeDisposable = CompositeDisposable()
 
-    fun fetchMovies(page: Int){
+    fun fetchMovies(api_key: String, page: Int){
         data.postValue(Resource.loading(null))
         Log.e("queryViewModel",page.toString())
-        beinConnectRepository.searchMoviesFromQuery(page)
+        Log.e("queryViewModel",api_key)
+        beinConnectRepository.searchMoviesFromQuery(api_key,page)
             ?.subscribeOn(Schedulers.io())
             ?.observeOn(AndroidSchedulers.mainThread())?.let{
                 compositeDisposable.add(
                     it.subscribe({model ->
                         data.value = Resource.success(model)
+
                         Log.e("movieList", model.toString())
                     }){
                         Log.e("ERR",data.value.toString())
                         data.value= Resource.error("Something went wrong", null)
                     })
             }
-
     }
 
     override fun onCleared() {

@@ -6,9 +6,9 @@ import com.isilon.beinconnect.data.model.Model
 import io.reactivex.Single
 
 class BeinConnectRepository(private val apiHelper: ApiHelper) {
-    fun searchMoviesFromQuery(page: Int): Single<Model>? {
+    fun searchMoviesFromQuery(api_key: String, page: Int): Single<Model>? {
         Log.e("queryRepository",page.toString())
 
-        return apiHelper.searchMoviesFromQuery(page)
+        return apiHelper.searchMoviesFromQuery(api_key, page)
     }
 }
