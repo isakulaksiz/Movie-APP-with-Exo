@@ -23,25 +23,13 @@ import com.isilon.beinconnect.utils.Constants
 import com.isilon.beinconnect.utils.Status
 
 class MainActivity : AppCompatActivity() {
-    private lateinit var mainViewModel: BeinConnectViewModel
-    private lateinit var progressBar: ProgressBar
-    private lateinit var adapter: MainAdapter
-    private lateinit var recyclerView: RecyclerView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         AndroidNetworking.initialize(applicationContext)
-
-        recyclerView = findViewById(R.id.recyclerView)
-        progressBar = findViewById(R.id.progressBar)
-
-        setUpUI()
-        setUpViewModel()
-        setUpObserver()
-        mainViewModel.fetchMovies(Constants.API_KEY,Constants.FIRST_PAGE)
     }
-
+/*
     private fun setUpObserver() {
         mainViewModel.data.observe(this, Observer {
             when (it.status){
@@ -85,4 +73,6 @@ class MainActivity : AppCompatActivity() {
         adapter.addData(data)
         adapter.notifyDataSetChanged()
     }
+
+ */
 }

@@ -40,6 +40,7 @@ class MainAdapter(private val data: ArrayList<Result>): RecyclerView.Adapter<Mai
     override fun onBindViewHolder(holder: MainAdapter.DataViewHolder, position: Int) {
         holder.bind(data[position])
 
+
     }
 
     override fun getItemCount(): Int {
