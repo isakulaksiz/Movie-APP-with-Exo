@@ -1,14 +1,17 @@
 package com.isilon.beinconnect.ui.main.view
 
+import android.app.Activity
 import android.os.Bundle
 import android.view.WindowManager
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.navigation.Navigation
 import androidx.viewpager.widget.ViewPager
 import com.androidnetworking.AndroidNetworking
 import com.google.android.material.tabs.TabLayout
+import com.isilon.beinconnect.R
 import com.isilon.beinconnect.ui.main.adapter.PagesAdapter
 
 class MainActivity : AppCompatActivity() {

@@ -11,6 +11,7 @@ import androidx.appcompat.content.res.AppCompatResources.getDrawable
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.viewpager.widget.ViewPager
@@ -51,7 +52,9 @@ class MainFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentMainBinding.inflate(inflater, container, false)
-
+        Handler().postDelayed({
+            showViewPagerItems(MainAdapter.mainMovieImg)
+        },1500)
 
         return binding.root
     }
@@ -60,9 +63,7 @@ class MainFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         setUpUI()
-        Handler().postDelayed({
-            showViewPagerItems(MainAdapter.mainMovieImg)
-        },1500)
+
         setUpViewModel()
         setUpObserver()
         mainViewModel.fetchMovies(Constants.API_KEY, Constants.FIRST_PAGE)
