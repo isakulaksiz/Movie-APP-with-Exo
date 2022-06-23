@@ -1,28 +1,33 @@
 package com.isilon.beinconnect.ui.main.adapter
 
+import android.app.Activity
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.LinearLayout
 import android.widget.TextView
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.isilon.beinconnect.R
 import com.isilon.beinconnect.data.model.Result
+import com.isilon.beinconnect.ui.main.view.MainActivity
+import com.isilon.beinconnect.ui.main.view.MainFragmentDirections
 
 class MainAdapter(private val data: ArrayList<Result>): RecyclerView.Adapter<MainAdapter.DataViewHolder>()  {
     companion object{
         var mainMovieImg: ArrayList<String> = ArrayList()
     }
-
+    private var mRecyclerView : RecyclerView? = null
     class DataViewHolder(view: View): RecyclerView.ViewHolder(view){
         val title: TextView
         val imageViewAvatar: ImageView
+
         init {
             title = view.findViewById(R.id.textViewTitle)
             imageViewAvatar = view.findViewById(R.id.imageViewAvatar)
-
         }
         fun bind(data: Result){
 
@@ -32,23 +37,66 @@ class MainAdapter(private val data: ArrayList<Result>): RecyclerView.Adapter<Mai
             if(mainMovieImg.size<3)
                 mainMovieImg.addAll(listOf("http://image.tmdb.org/t/p/w185/"+data.backdrop_path))
             Log.e("ViewPagerImg", mainMovieImg.toString())
-            //mainMovieImg.add("http://image.tmdb.org/t/p/w185/"+data.backdrop_path)
-            //Log.e("temp", mainMovieImg.get(0))
+
             Glide.with(imageViewAvatar.context)
                 .load("http://image.tmdb.org/t/p/w185/"+data.poster_path)
                 .into(imageViewAvatar)
 
+
         }
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MainAdapter.DataViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DataViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_layout, parent,false)
-        return MainAdapter.DataViewHolder(view)
+        return DataViewHolder(view)
     }
 
-    override fun onBindViewHolder(holder: MainAdapter.DataViewHolder, position: Int) {
-        holder.bind(data[position])
+    override fun onAttachedToRecyclerView(recyclerView: RecyclerView) {
+        super.onAttachedToRecyclerView(recyclerView)
+        mRecyclerView = recyclerView
+    }
 
+    override fun onDetachedFromRecyclerView(recyclerView: RecyclerView) {
+        super.onDetachedFromRecyclerView(recyclerView)
+        mRecyclerView = null// to avoid memory leak
+    }
+    override fun onBindViewHolder(holder: DataViewHolder, position: Int) {
+        holder.bind(data[position])
+        holder.itemView.setOnClickListener{
+            val resultData = data[position]
+            val action = MainFragmentDirections.actionMainFragmentToDetailFragment()
+            action.releaseDate = resultData.release_date
+            action.avatar = resultData.poster_path
+            action.adult = resultData.adult
+
+            val navController = Navigation.findNavController(mRecyclerView!!)
+            navController!!.navigate(action)
+        }
+        /*holder.itemView.setOnClickListener{
+
+            val resultData = data[position]
+
+            Log.e("AdapterRelease",resultData.release_date)
+
+            val action = MainFragmentDirections.actionMainFragmentToDetailFragment()
+            action.adult = resultData.adult
+            action.avatar = resultData.poster_path
+            action.releaseDate = resultData.release_date
+            try {
+
+
+                val navController = Navigation.findNavController(holder.itemView)
+                navController.navigate(action)
+
+            }catch (e: Exception){
+                e.printStackTrace()
+            }
+
+
+
+        }
+
+         */
     }
 
     override fun getItemCount(): Int {
@@ -58,9 +106,5 @@ class MainAdapter(private val data: ArrayList<Result>): RecyclerView.Adapter<Mai
     fun addData(list: List<Result>){
         data.addAll(list)
     }
-    fun getImageViewPager(data: Result){
-
-    }
-
 
 }

@@ -1,23 +1,32 @@
 package com.isilon.beinconnect.ui.main.view
 
+import android.app.Activity
 import android.os.Bundle
 import android.view.WindowManager
+import android.widget.ImageView
+import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.navigation.Navigation
 import androidx.viewpager.widget.ViewPager
 import com.androidnetworking.AndroidNetworking
 import com.google.android.material.tabs.TabLayout
+import com.isilon.beinconnect.R
 import com.isilon.beinconnect.ui.main.adapter.PagesAdapter
 
 class MainActivity : AppCompatActivity() {
     var tabLayout: TabLayout? = null
     var viewPager: ViewPager? = null
-
+    private lateinit var backButton: ImageView
+    private lateinit var searchButton: ImageView
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(com.isilon.beinconnect.R.layout.activity_main)
 
         tabLayout = findViewById(com.isilon.beinconnect.R.id.tabLayout)
         viewPager = findViewById(com.isilon.beinconnect.R.id.viewPager)
+        backButton = findViewById(com.isilon.beinconnect.R.id.iv_backBtn)
+        searchButton = findViewById(com.isilon.beinconnect.R.id.search_btn)
 
         tabLayout!!.addTab(tabLayout!!.newTab().setText("Yabancı Film"))
         tabLayout!!.addTab(tabLayout!!.newTab().setText("Yerli Film"))
@@ -44,5 +53,22 @@ class MainActivity : AppCompatActivity() {
             WindowManager.LayoutParams.FLAG_FULLSCREEN
         )
 
+        backButton.setOnClickListener {
+            backPressedBtn()
+        }
+
+        searchButton.setOnClickListener {
+            searchNameFromQuery()
+        }
+    }
+
+    private fun searchNameFromQuery() {
+        //TODO: import search btn pressed code line
+        Toast.makeText(this,"Coming soon!", Toast.LENGTH_SHORT).show()
+    }
+
+    private fun backPressedBtn() {
+        //TODO: import back pressed code line
+        Toast.makeText(this,"Coming soon!", Toast.LENGTH_SHORT).show()
     }
 }

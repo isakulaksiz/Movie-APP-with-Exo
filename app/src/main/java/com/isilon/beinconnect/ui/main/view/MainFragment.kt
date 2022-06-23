@@ -11,6 +11,7 @@ import androidx.appcompat.content.res.AppCompatResources.getDrawable
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.viewpager.widget.ViewPager
@@ -42,9 +43,7 @@ class MainFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        Handler().postDelayed({
-            showViewPagerItems(MainAdapter.mainMovieImg)
-        },1500)
+
 
     }
 
@@ -53,7 +52,9 @@ class MainFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentMainBinding.inflate(inflater, container, false)
-
+        Handler().postDelayed({
+            showViewPagerItems(MainAdapter.mainMovieImg)
+        },1500)
 
         return binding.root
     }
@@ -116,7 +117,7 @@ class MainFragment : Fragment() {
     }
 
     @SuppressLint("SetTextI18n")
-    private fun showViewPagerItems(images: ArrayList<String>){
+     fun showViewPagerItems(images: ArrayList<String>){
 
         mViewPagerAdapter = ViewPagerAdapter(requireContext(), images)
         binding.viewpager.adapter = mViewPagerAdapter

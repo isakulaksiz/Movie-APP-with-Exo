@@ -2,7 +2,7 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/navigation.xml"
+    android:id="@+id/navigation"
     app:startDestination="@id/mainFragment">
 
     <fragment
@@ -11,12 +11,27 @@
         android:label="fragment_main"
         tools:layout="@layout/fragment_main" >
         <action
-            android:id="@+id/action_mainFragment_to_detailFragment3"
+            android:id="@+id/action_mainFragment_to_detailFragment"
             app:destination="@id/detailFragment" />
     </fragment>
     <fragment
         android:id="@+id/detailFragment"
         android:name="com.isilon.beinconnect.ui.main.view.DetailFragment"
         android:label="fragment_detail"
-        tools:layout="@layout/fragment_detail" />
+        tools:layout="@layout/fragment_detail" >
+        <argument
+            android:name="releaseDate"
+            app:argType="string"
+            app:nullable="true"
+            android:defaultValue="No Release Date" />
+        <argument
+            android:name="avatar"
+            app:argType="string"
+            app:nullable="true"
+            android:defaultValue="No Avatar Img" />
+        <argument
+            android:name="adult"
+            app:argType="boolean"
+            android:defaultValue="false" />
+    </fragment>
 </navigation>
