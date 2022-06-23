@@ -12,13 +12,14 @@ import com.isilon.beinconnect.ui.main.view.TurkishMovieFragment
 
 class PagesAdapter(var myContext: Context, var fm: FragmentManager, internal var totalTabs: Int): FragmentPagerAdapter(fm)  {
 
-
     override fun getItem(position: Int): Fragment {
         when (position) {
             0 -> {
+
                 return MainFragment()
             }
             1 -> {
+                
                 return TurkishMovieFragment()
             }
             2 -> {

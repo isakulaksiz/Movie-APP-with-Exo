@@ -47,6 +47,8 @@ class MainActivity : AppCompatActivity() {
             override fun onTabUnselected(tab: TabLayout.Tab) {}
             override fun onTabReselected(tab: TabLayout.Tab) {}
         })
+
+
         AndroidNetworking.initialize(applicationContext)
         window.setFlags(
             WindowManager.LayoutParams.FLAG_FULLSCREEN,
@@ -60,6 +62,8 @@ class MainActivity : AppCompatActivity() {
         searchButton.setOnClickListener {
             searchNameFromQuery()
         }
+
+
     }
 
     private fun searchNameFromQuery() {

@@ -8,19 +8,22 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.Navigation
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.isilon.beinconnect.R
 import com.isilon.beinconnect.data.model.Result
-import com.isilon.beinconnect.ui.main.view.MainActivity
 import com.isilon.beinconnect.ui.main.view.MainFragmentDirections
+
 
 class MainAdapter(private val data: ArrayList<Result>): RecyclerView.Adapter<MainAdapter.DataViewHolder>()  {
     companion object{
         var mainMovieImg: ArrayList<String> = ArrayList()
     }
     private var mRecyclerView : RecyclerView? = null
+
     class DataViewHolder(view: View): RecyclerView.ViewHolder(view){
         val title: TextView
         val imageViewAvatar: ImageView
@@ -60,43 +63,29 @@ class MainAdapter(private val data: ArrayList<Result>): RecyclerView.Adapter<Mai
         super.onDetachedFromRecyclerView(recyclerView)
         mRecyclerView = null// to avoid memory leak
     }
+
     override fun onBindViewHolder(holder: DataViewHolder, position: Int) {
         holder.bind(data[position])
+
+        Log.e("holder", holder.toString())
+        Log.e("position", position.toString())
         holder.itemView.setOnClickListener{
             val resultData = data[position]
             val action = MainFragmentDirections.actionMainFragmentToDetailFragment()
             action.releaseDate = resultData.release_date
             action.avatar = resultData.poster_path
             action.adult = resultData.adult
+            Log.e("ActionRelease",action.releaseDate.toString())
+            Log.e("ActionAvatar",action.avatar.toString())
+            Log.e("ActionAdult",action.adult.toString())
 
-            val navController = Navigation.findNavController(mRecyclerView!!)
-            navController!!.navigate(action)
-        }
-        /*holder.itemView.setOnClickListener{
-
-            val resultData = data[position]
-
-            Log.e("AdapterRelease",resultData.release_date)
-
-            val action = MainFragmentDirections.actionMainFragmentToDetailFragment()
-            action.adult = resultData.adult
-            action.avatar = resultData.poster_path
-            action.releaseDate = resultData.release_date
             try {
-
-
-                val navController = Navigation.findNavController(holder.itemView)
-                navController.navigate(action)
-
+                (holder.itemView.context as AppCompatActivity).findNavController(R.id.fragmentContainerView).navigate(action)
             }catch (e: Exception){
                 e.printStackTrace()
             }
 
-
-
         }
-
-         */
     }
 
     override fun getItemCount(): Int {
