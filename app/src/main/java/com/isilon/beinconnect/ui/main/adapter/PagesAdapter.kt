@@ -19,6 +19,7 @@ class PagesAdapter(var myContext: Context, var fm: FragmentManager, internal var
                 return MainFragment()
             }
             1 -> {
+                
                 return TurkishMovieFragment()
             }
             2 -> {

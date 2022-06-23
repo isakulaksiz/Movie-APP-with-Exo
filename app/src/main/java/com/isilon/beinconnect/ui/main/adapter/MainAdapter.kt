@@ -79,15 +79,8 @@ class MainAdapter(private val data: ArrayList<Result>): RecyclerView.Adapter<Mai
             Log.e("ActionAvatar",action.avatar.toString())
             Log.e("ActionAdult",action.adult.toString())
 
-            var temp = "alperen"
-            action.releaseDate = temp
-
             try {
-                //val navController = Navigation.findNavController(holder.itemView)
-                //navController.navigate(action)
                 (holder.itemView.context as AppCompatActivity).findNavController(R.id.fragmentContainerView).navigate(action)
-                //val navController = Navigation.findNavController(holder.itemView)
-                //navController.navigate(action)
             }catch (e: Exception){
                 e.printStackTrace()
             }
