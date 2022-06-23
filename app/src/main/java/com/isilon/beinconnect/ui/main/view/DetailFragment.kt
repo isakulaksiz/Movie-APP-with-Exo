@@ -35,9 +35,10 @@ class DetailFragment : Fragment() {
 
         binding.tvAdult.text = adult.toString()
         binding.tvReleaseDate.text = releaseDate
-
+        Log.e("img","http://image.tmdb.org/t/p/w185"+imageUrl)
+        //"http://image.tmdb.org/t/p/w185/"+data.poster_path
         Glide.with(binding.ivDetailAvatar.context)
-            .load(imageUrl)
+            .load("http://image.tmdb.org/t/p/w185"+imageUrl)
             .into(binding.ivDetailAvatar)
         Log.e("Adult",adult.toString())
         Log.e("avatarImg",imageUrl.toString())
