@@ -42,9 +42,7 @@ class MainFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        Handler().postDelayed({
-            showViewPagerItems(MainAdapter.mainMovieImg)
-        },1500)
+
 
     }
 
@@ -62,7 +60,9 @@ class MainFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         setUpUI()
-
+        Handler().postDelayed({
+            showViewPagerItems(MainAdapter.mainMovieImg)
+        },1500)
         setUpViewModel()
         setUpObserver()
         mainViewModel.fetchMovies(Constants.API_KEY, Constants.FIRST_PAGE)
@@ -116,7 +116,7 @@ class MainFragment : Fragment() {
     }
 
     @SuppressLint("SetTextI18n")
-    private fun showViewPagerItems(images: ArrayList<String>){
+     fun showViewPagerItems(images: ArrayList<String>){
 
         mViewPagerAdapter = ViewPagerAdapter(requireContext(), images)
         binding.viewpager.adapter = mViewPagerAdapter
