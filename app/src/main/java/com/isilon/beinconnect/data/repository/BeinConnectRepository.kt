@@ -11,4 +11,10 @@ class BeinConnectRepository(private val apiHelper: ApiHelper) {
 
         return apiHelper.searchMoviesFromQuery(api_key, page)
     }
+
+    fun searchFromTitle(api_key: String, query: String) : Single<Model>?{
+        Log.e("queryRepository",query)
+
+        return apiHelper.searchFromTitle(api_key,query)
+    }
 }

@@ -33,6 +33,27 @@ class BeinConnectViewModel(private val beinConnectRepository: BeinConnectReposit
             }
     }
 
+    fun getMoviesFromTitle(api_key: String, query: String){
+        data.postValue(Resource.loading(null))
+        Log.e("queryViewModel",query)
+        Log.e("queryViewModel",api_key)
+
+        beinConnectRepository.searchFromTitle(api_key,query)
+            ?.subscribeOn(Schedulers.io())
+            ?.observeOn(AndroidSchedulers.mainThread())?.let{
+                compositeDisposable.add(
+                    it.subscribe({model ->
+                        data.value = Resource.success(model)
+
+                        Log.e("SearchMovieList", model.toString())
+                    }){
+                        Log.e("SEARCH_ERR",data.value.toString())
+                        data.value= Resource.error("Something went wrong", null)
+                    })
+            }
+
+    }
+
     override fun onCleared() {
         super.onCleared()
         compositeDisposable.dispose()

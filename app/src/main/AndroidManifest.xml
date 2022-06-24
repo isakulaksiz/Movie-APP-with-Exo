@@ -14,7 +14,7 @@
         android:theme="@style/Theme.Design.Light.NoActionBar"
         android:usesCleartextTraffic="true">
         <activity
-            android:name=".SearchActivity"
+            android:name=".ui.main.view.SearchActivity"
             android:exported="false" />
         <activity
             android:name=".ui.main.view.MainActivity"
