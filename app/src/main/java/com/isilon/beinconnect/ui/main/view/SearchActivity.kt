@@ -31,7 +31,7 @@ class SearchActivity : AppCompatActivity() {
     private lateinit var recyclerView: RecyclerView
     private lateinit var adapter: SearchAdapter
 
-    private lateinit var mainViewModel: BeinConnectViewModel
+    private lateinit var searchViewModel: BeinConnectViewModel
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_search)
@@ -46,7 +46,7 @@ class SearchActivity : AppCompatActivity() {
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener{
             override fun onQueryTextSubmit(query: String?): Boolean {
                 query?.let {
-                    mainViewModel.getMoviesFromTitle(Constants.API_KEY, query)
+                    searchViewModel.getMoviesFromTitle(Constants.API_KEY, query)
                     println("queryTest"+ query)
                 }
 
@@ -55,7 +55,7 @@ class SearchActivity : AppCompatActivity() {
 
             override fun onQueryTextChange(newText: String?): Boolean {
                 newText?.let {
-                    mainViewModel.getMoviesFromTitle(Constants.API_KEY, newText)
+                    searchViewModel.getMoviesFromTitle(Constants.API_KEY, newText)
                     println("queryTest"+ newText)
                 }
 
@@ -65,7 +65,7 @@ class SearchActivity : AppCompatActivity() {
     }
 
     private fun setUpObserver() {
-        mainViewModel.data.observe(this, Observer {
+        searchViewModel.data.observe(this, Observer {
             when (it.status) {
                 Status.SUCCESS -> {
                     progressBar.visibility = View.GONE
@@ -87,12 +87,13 @@ class SearchActivity : AppCompatActivity() {
     }
 
     private fun renderList(data: List<Result>) {
-        adapter.addData(data)
-        adapter.notifyDataSetChanged()
+        val list = ArrayList<Result>()
+        list.addAll(data)
+        adapter.changeData(list)
     }
 
     private fun setUpViewModel() {
-        mainViewModel = ViewModelProviders.of(
+        searchViewModel = ViewModelProviders.of(
             this,
             ViewModelFactory(ApiHelper(ApiServiceImpl()))
         )

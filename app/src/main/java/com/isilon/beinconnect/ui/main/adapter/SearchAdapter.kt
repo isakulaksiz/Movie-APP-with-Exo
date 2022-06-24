@@ -11,12 +11,7 @@ import com.bumptech.glide.Glide
 import com.isilon.beinconnect.R
 import com.isilon.beinconnect.data.model.Result
 
-class SearchAdapter(private val data: ArrayList<Result>): RecyclerView.Adapter<MainAdapter.DataViewHolder>() {
-
-    companion object{
-        var mainMovieImg: ArrayList<String> = ArrayList()
-    }
-    private var mRecyclerView : RecyclerView? = null
+class SearchAdapter(private val data: ArrayList<Result>): RecyclerView.Adapter<SearchAdapter.DataViewHolder>() {
 
     class DataViewHolder(view: View): RecyclerView.ViewHolder(view){
         val title: TextView
@@ -31,10 +26,6 @@ class SearchAdapter(private val data: ArrayList<Result>): RecyclerView.Adapter<M
             title.text = data.original_title
             Log.e("title", data.original_title)
 
-            if(MainAdapter.mainMovieImg.size<3)
-                MainAdapter.mainMovieImg.addAll(listOf("http://image.tmdb.org/t/p/w185/"+data.backdrop_path))
-            Log.e("ViewPagerImg", MainAdapter.mainMovieImg.toString())
-
             Glide.with(imageViewAvatar.context)
                 .load("http://image.tmdb.org/t/p/w185/"+data.poster_path)
                 .into(imageViewAvatar)
@@ -43,12 +34,12 @@ class SearchAdapter(private val data: ArrayList<Result>): RecyclerView.Adapter<M
         }
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MainAdapter.DataViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SearchAdapter.DataViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_layout, parent,false)
-        return MainAdapter.DataViewHolder(view)
+        return SearchAdapter.DataViewHolder(view)
     }
 
-    override fun onBindViewHolder(holder: MainAdapter.DataViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: SearchAdapter.DataViewHolder, position: Int) {
         holder.bind(data[position])
     }
 
@@ -59,5 +50,11 @@ class SearchAdapter(private val data: ArrayList<Result>): RecyclerView.Adapter<M
 
     fun addData(list: List<Result>){
         data.addAll(list)
+    }
+
+    fun changeData(newList: ArrayList<Result>){
+        this.data.clear()
+        this.data.addAll(newList)
+        notifyDataSetChanged()
     }
 }
