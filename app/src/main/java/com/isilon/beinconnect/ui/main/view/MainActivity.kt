@@ -68,11 +68,11 @@ class MainActivity : AppCompatActivity() {
 
     private fun searchNameFromQuery() {
         //TODO: import search btn pressed code line
+
         Toast.makeText(this,"Coming soon!", Toast.LENGTH_SHORT).show()
     }
 
     private fun backPressedBtn() {
-        //TODO: import back pressed code line
-        Toast.makeText(this,"Coming soon!", Toast.LENGTH_SHORT).show()
+        onBackPressed()
     }
 }

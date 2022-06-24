@@ -113,6 +113,9 @@ class DetailFragment : Fragment() {
             preparePlayer()
             binding.lnDetailMain.visibility = View.GONE
             binding.lnBtnMain.visibility = View.GONE
+            binding.playerView.visibility = View.VISIBLE
+
+
         }
 
 

@@ -100,6 +100,7 @@
             argType:show_buffering="when_playing"
             argType:show_fastforward_button="true"
             argType:show_next_button="false"
+            android:visibility="gone"
             argType:show_previous_button="false"
             argType:show_rewind_button="true"
             argType:show_subtitle_button="true"
