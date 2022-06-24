@@ -1,6 +1,7 @@
 package com.isilon.beinconnect.ui.main.view
 
 import android.app.Activity
+import android.content.Intent
 import android.os.Bundle
 import android.view.WindowManager
 import android.widget.ImageView
@@ -60,19 +61,16 @@ class MainActivity : AppCompatActivity() {
         }
 
         searchButton.setOnClickListener {
-            searchNameFromQuery()
+            val intent = Intent(this,SearchActivity::class.java)
+            startActivity(intent)
+
         }
 
 
     }
 
-    private fun searchNameFromQuery() {
-        //TODO: import search btn pressed code line
-        Toast.makeText(this,"Coming soon!", Toast.LENGTH_SHORT).show()
-    }
 
     private fun backPressedBtn() {
-        //TODO: import back pressed code line
-        Toast.makeText(this,"Coming soon!", Toast.LENGTH_SHORT).show()
+        onBackPressed()
     }
 }

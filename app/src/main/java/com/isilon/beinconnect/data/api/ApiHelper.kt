@@ -9,4 +9,7 @@ class ApiHelper(private val apiService: ApiService) {
         Log.e("queryApiHelper", page.toString())
         return apiService.searchMoviesFromQuery(api_key, page)
     }
+    fun searchFromTitle(api_key: String, query: String): Single<Model>?{
+        return apiService.searchFromTitle(api_key,query)
+    }
 }

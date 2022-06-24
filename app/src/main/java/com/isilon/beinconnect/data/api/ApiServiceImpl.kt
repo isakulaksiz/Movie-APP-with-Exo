@@ -16,4 +16,12 @@ class ApiServiceImpl: ApiService {
             .build()
             .getObjectSingle(Model::class.java)
     }
+
+    override fun searchFromTitle(key: String, query: String): Single<Model> {
+        return Rx2AndroidNetworking.get(Constants.SEARCH_URL)
+            .addQueryParameter("api_key",key)
+            .addQueryParameter("query", query)
+            .build()
+            .getObjectSingle(Model::class.java)
+    }
 }

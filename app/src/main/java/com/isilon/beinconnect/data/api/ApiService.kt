@@ -12,4 +12,10 @@ interface ApiService {
         @Query("api_key") key: String,
         @Query("page") limit: Int
     ): Single<Model>
+
+    @GET("")
+    fun searchFromTitle(
+        @Query("api_key") key: String,
+        @Query("query") query: String
+    ): Single<Model>
 }
