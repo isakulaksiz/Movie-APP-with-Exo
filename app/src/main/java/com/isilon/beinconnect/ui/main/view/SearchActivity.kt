@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.Button
 import android.widget.ProgressBar
 import android.widget.Toast
 import androidx.appcompat.widget.SearchView
@@ -30,7 +31,11 @@ class SearchActivity : AppCompatActivity() {
     private lateinit var progressBar: ProgressBar
     private lateinit var recyclerView: RecyclerView
     private lateinit var adapter: SearchAdapter
+    private lateinit var btnCancel: Button
 
+    companion object{
+        lateinit var temp: String
+    }
     private lateinit var searchViewModel: BeinConnectViewModel
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,10 +44,15 @@ class SearchActivity : AppCompatActivity() {
         searchView = findViewById(R.id.search_view)
         progressBar = findViewById(R.id.progressBar)
         recyclerView = findViewById(R.id.searchRecyclerView)
+        btnCancel = findViewById(R.id.btn_cancel)
 
         setUpUI()
         setUpViewModel()
         setUpObserver()
+
+        btnCancel.setOnClickListener {
+            //TODO: should be search text null
+        }
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener{
             override fun onQueryTextSubmit(query: String?): Boolean {
                 query?.let {
@@ -101,8 +111,8 @@ class SearchActivity : AppCompatActivity() {
     }
 
     private fun setUpUI() {
-        recyclerView.layoutManager = GridLayoutManager(this,2,
-            GridLayoutManager.VERTICAL,false)
+        recyclerView.layoutManager = GridLayoutManager(this,3,
+            GridLayoutManager.HORIZONTAL,false)
         adapter = SearchAdapter(arrayListOf())
         recyclerView.addItemDecoration(
             DividerItemDecoration(

@@ -101,9 +101,16 @@ class DetailFragment : Fragment() {
         val adult = arguments?.getBoolean("adult")
         val imageUrl = arguments?.getString("avatar")
         val releaseDate = arguments?.getString("releaseDate")
+        val title = arguments?.getString("title")
+        val lang = arguments?.getString("originalLanguage")
+        val overview = arguments?.getString("overview")
 
         binding.tvAdult.text = adult.toString()
         binding.tvReleaseDate.text = releaseDate
+        binding.tvMovieTitle.text = title
+        binding.movieLanguage.text = lang
+        binding.tvMovieOverview.text = overview
+
         Log.e("img","http://image.tmdb.org/t/p/w185"+imageUrl)
         Glide.with(binding.ivDetailAvatar.context)
             .load("http://image.tmdb.org/t/p/w185"+imageUrl)

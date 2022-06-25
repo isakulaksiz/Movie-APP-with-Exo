@@ -32,5 +32,20 @@
             android:name="adult"
             android:defaultValue="false"
             app:argType="boolean" />
+        <argument
+            android:name="title"
+            app:argType="string"
+            app:nullable="true"
+            android:defaultValue="No Title" />
+        <argument
+            android:name="originalLanguage"
+            app:argType="string"
+            app:nullable="true"
+            android:defaultValue="No Original Language" />
+        <argument
+            android:name="overview"
+            app:argType="string"
+            app:nullable="true"
+            android:defaultValue="No Overview" />
     </fragment>
 </navigation>
