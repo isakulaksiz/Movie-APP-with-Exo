@@ -52,9 +52,14 @@ class MainFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentMainBinding.inflate(inflater, container, false)
-        Handler().postDelayed({
-            showViewPagerItems(MainAdapter.mainMovieImg)
-        },1500)
+        try {
+            Handler().postDelayed({
+                showViewPagerItems(MainAdapter.mainMovieImg)
+            },1500)
+        }catch (e: Exception){
+            e.printStackTrace()
+        }
+
 
         return binding.root
     }

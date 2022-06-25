@@ -5,31 +5,36 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.LinearLayout
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
+import androidx.navigation.Navigation
+import androidx.navigation.Navigation.findNavController
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.isilon.beinconnect.R
 import com.isilon.beinconnect.data.model.Result
+import com.isilon.beinconnect.ui.main.view.MainActivity
+import com.isilon.beinconnect.ui.main.view.MainFragmentDirections
 
 class SearchAdapter(private val data: ArrayList<Result>): RecyclerView.Adapter<SearchAdapter.DataViewHolder>() {
 
     class DataViewHolder(view: View): RecyclerView.ViewHolder(view){
         val title: TextView
         val imageViewAvatar: ImageView
-
         init {
             title = view.findViewById(R.id.textViewTitle)
             imageViewAvatar = view.findViewById(R.id.imageViewAvatar)
         }
         fun bind(data: Result){
 
-            title.text = data.original_title
-            Log.e("title", data.original_title)
+            title.text = data.title
+            Log.e("title", data.title)
 
             Glide.with(imageViewAvatar.context)
                 .load("http://image.tmdb.org/t/p/w185/"+data.poster_path)
                 .into(imageViewAvatar)
-
 
         }
     }
@@ -41,6 +46,21 @@ class SearchAdapter(private val data: ArrayList<Result>): RecyclerView.Adapter<S
 
     override fun onBindViewHolder(holder: SearchAdapter.DataViewHolder, position: Int) {
         holder.bind(data[position])
+        Log.e("SearchHolder", holder.toString())
+        Log.e("SearchPosition", position.toString())
+        holder.itemView.setOnClickListener {
+            val result = data[position]
+
+            val searchAction = MainFragmentDirections.actionMainFragmentToDetailFragment()
+            searchAction.title = result.title
+            searchAction.avatar = result.poster_path
+            Log.e("ActionAvatar",searchAction.avatar.toString())
+            Log.e("ActionAvatar",searchAction.title.toString())
+
+
+            (holder.itemView.context as AppCompatActivity).findNavController(R.id.fragmentContainerView).navigate(searchAction)
+
+        }
     }
 
     override fun getItemCount(): Int {

@@ -82,6 +82,7 @@ class MainAdapter(private val data: ArrayList<Result>): RecyclerView.Adapter<Mai
             Log.e("ActionAvatar",action.avatar.toString())
             Log.e("ActionAdult",action.adult.toString())
             Log.e("ActionOverview",action.overview.toString())
+
             try {
                 (holder.itemView.context as AppCompatActivity).findNavController(R.id.fragmentContainerView).navigate(action)
             }catch (e: Exception){
