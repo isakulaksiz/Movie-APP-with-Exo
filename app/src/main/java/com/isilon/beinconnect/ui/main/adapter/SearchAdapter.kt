@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.Navigation
 import androidx.navigation.Navigation.findNavController
@@ -15,8 +16,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.isilon.beinconnect.R
 import com.isilon.beinconnect.data.model.Result
+import com.isilon.beinconnect.ui.main.view.DetailFragment
 import com.isilon.beinconnect.ui.main.view.MainActivity
 import com.isilon.beinconnect.ui.main.view.MainFragmentDirections
+import com.isilon.beinconnect.ui.main.view.SearchFragmentDirections
 
 class SearchAdapter(private val data: ArrayList<Result>): RecyclerView.Adapter<SearchAdapter.DataViewHolder>() {
 
@@ -39,26 +42,43 @@ class SearchAdapter(private val data: ArrayList<Result>): RecyclerView.Adapter<S
         }
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SearchAdapter.DataViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DataViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_layout, parent,false)
-        return SearchAdapter.DataViewHolder(view)
+        return DataViewHolder(view)
     }
 
-    override fun onBindViewHolder(holder: SearchAdapter.DataViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: DataViewHolder, position: Int) {
         holder.bind(data[position])
         Log.e("SearchHolder", holder.toString())
         Log.e("SearchPosition", position.toString())
         holder.itemView.setOnClickListener {
             val result = data[position]
 
-            val searchAction = MainFragmentDirections.actionMainFragmentToDetailFragment()
+            val searchAction = SearchFragmentDirections.actionSearchFragmentToDetailFragment()
             searchAction.title = result.title
             searchAction.avatar = result.poster_path
-            Log.e("ActionAvatar",searchAction.avatar.toString())
-            Log.e("ActionAvatar",searchAction.title.toString())
+            searchAction.adult = result.adult
+            searchAction.overview = result.overview
+            searchAction.originalLanguage = result.original_language
+            searchAction.releaseDate = result.release_date
 
+            Log.e("SActionAvatar",searchAction.avatar.toString())
+            Log.e("SActionTitle",searchAction.title.toString())
+            Log.e("SActionAdult",searchAction.adult.toString())
+            Log.e("SActionOverview",searchAction.overview.toString())
+            Log.e("SActionLang",searchAction.originalLanguage.toString())
+            Log.e("SActionDate",searchAction.releaseDate.toString())
+            //val navController = Navigation.findNavController(holder.itemView)
+            //navController.navigate(searchAction)
+            try {
+                //val navController = Navigation.findNavController(holder.itemView)
+                //navController.navigate(searchAction)
+                (holder.itemView.context as AppCompatActivity).findNavController(R.id.fragmentContainerView).navigate(searchAction)
 
-            (holder.itemView.context as AppCompatActivity).findNavController(R.id.fragmentContainerView).navigate(searchAction)
+            }catch (e: Exception){
+                e.printStackTrace()
+            }
+
 
         }
     }

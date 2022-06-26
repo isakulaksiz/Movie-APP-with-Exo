@@ -10,7 +10,7 @@
         <LinearLayout
             android:id="@+id/ln_detail_main"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical">
 
             <TextView
@@ -69,13 +69,27 @@
                         android:textColor="@color/black"
                         android:textSize="12dp" />
 
+                    <ImageView
+                        android:id="@+id/iv_adult"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:visibility="gone"
+                        android:src="@drawable/ic_baseline_filter_7_24"/>
+
+                    <ImageView
+                        android:id="@+id/iv_child"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:visibility="gone"
+                        android:src="@drawable/ic_baseline_child_filter_7_24"/>
+                    <!--
                     <TextView
                         android:id="@+id/tv_adult"                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:maxWidth="150dp"
                         android:text=""
                         android:textSize="14dp" />
-
+                    -->
 
                 </LinearLayout>
 

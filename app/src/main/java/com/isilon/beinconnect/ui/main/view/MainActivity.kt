@@ -1,20 +1,23 @@
 package com.isilon.beinconnect.ui.main.view
 
+
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.os.Handler
+import android.util.Log
 import android.view.View
 import android.view.WindowManager
 import android.widget.ImageView
 import android.widget.LinearLayout
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
+import androidx.navigation.Navigation
 import androidx.viewpager.widget.ViewPager
 import com.androidnetworking.AndroidNetworking
 import com.google.android.material.tabs.TabLayout
 import com.isilon.beinconnect.R
 import com.isilon.beinconnect.ui.main.adapter.PagesAdapter
-import com.isilon.beinconnect.ui.main.adapter.SearchAdapter
-import com.isilon.beinconnect.ui.main.adapter.SearchFragment
+
 
 class MainActivity : AppCompatActivity() {
     var tabLayout: TabLayout? = null
@@ -22,9 +25,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var backButton: ImageView
     private lateinit var searchButton: ImageView
     private lateinit var linFragment: LinearLayout
-    companion object{
-        var isShowSearcDetail: Boolean = false
-    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(com.isilon.beinconnect.R.layout.activity_main)
@@ -66,15 +67,12 @@ class MainActivity : AppCompatActivity() {
         }
 
         searchButton.setOnClickListener {
-            //val intent = Intent(this,SearchActivity::class.java)
-            //startActivity(intent)
-            linFragment.visibility = View.GONE
+            //linFragment.visibility = View.GONE
 
-            isShowSearcDetail = true
             //startCountTimer()
 
 
-
+/*
             try {
                 Handler().postDelayed({
                     linFragment.visibility = View.VISIBLE
@@ -83,10 +81,10 @@ class MainActivity : AppCompatActivity() {
 
             }
 
-
+*/
 
             val transaction = supportFragmentManager.beginTransaction()
-            transaction.replace(R.id.searchFragmentContainerView, SearchFragment())
+            transaction.replace(com.isilon.beinconnect.R.id.fragmentContainerView, SearchFragment())
             transaction.disallowAddToBackStack()
             transaction.commit()
         }
@@ -94,6 +92,7 @@ class MainActivity : AppCompatActivity() {
 
 
     }
+
 
     private fun startCountTimer() {
         object : CountDownTimer(5000, 1000) {

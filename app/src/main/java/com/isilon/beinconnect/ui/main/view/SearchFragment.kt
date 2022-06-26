@@ -1,4 +1,4 @@
-package com.isilon.beinconnect.ui.main.adapter
+package com.isilon.beinconnect.ui.main.view
 
 import android.os.Bundle
 import android.util.Log
@@ -19,9 +19,9 @@ import com.isilon.beinconnect.R
 import com.isilon.beinconnect.data.api.ApiHelper
 import com.isilon.beinconnect.data.api.ApiServiceImpl
 import com.isilon.beinconnect.data.model.Result
-import com.isilon.beinconnect.databinding.FragmentMainBinding
 import com.isilon.beinconnect.databinding.FragmentSearchBinding
 import com.isilon.beinconnect.ui.base.ViewModelFactory
+import com.isilon.beinconnect.ui.main.adapter.SearchAdapter
 import com.isilon.beinconnect.ui.main.viewmodel.BeinConnectViewModel
 import com.isilon.beinconnect.utils.Constants
 import com.isilon.beinconnect.utils.Status
