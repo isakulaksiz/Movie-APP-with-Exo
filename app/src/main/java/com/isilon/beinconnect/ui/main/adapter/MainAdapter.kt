@@ -75,9 +75,13 @@ class MainAdapter(private val data: ArrayList<Result>): RecyclerView.Adapter<Mai
             action.releaseDate = resultData.release_date
             action.avatar = resultData.poster_path
             action.adult = resultData.adult
+            action.title = resultData.title
+            action.originalLanguage = resultData.original_language
+            action.overview = resultData.overview
             Log.e("ActionRelease",action.releaseDate.toString())
             Log.e("ActionAvatar",action.avatar.toString())
             Log.e("ActionAdult",action.adult.toString())
+            Log.e("ActionOverview",action.overview.toString())
 
             try {
                 (holder.itemView.context as AppCompatActivity).findNavController(R.id.fragmentContainerView).navigate(action)

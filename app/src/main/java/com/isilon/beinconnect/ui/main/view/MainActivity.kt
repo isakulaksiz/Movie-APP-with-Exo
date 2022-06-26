@@ -1,13 +1,16 @@
 package com.isilon.beinconnect.ui.main.view
 
-import android.app.Activity
-import android.content.Intent
+
 import android.os.Bundle
+import android.os.CountDownTimer
+import android.os.Handler
+import android.util.Log
+import android.view.View
 import android.view.WindowManager
 import android.widget.ImageView
-import android.widget.Toast
-import androidx.appcompat.app.AlertDialog
+import android.widget.LinearLayout
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
 import androidx.viewpager.widget.ViewPager
 import com.androidnetworking.AndroidNetworking
@@ -15,19 +18,22 @@ import com.google.android.material.tabs.TabLayout
 import com.isilon.beinconnect.R
 import com.isilon.beinconnect.ui.main.adapter.PagesAdapter
 
+
 class MainActivity : AppCompatActivity() {
     var tabLayout: TabLayout? = null
     var viewPager: ViewPager? = null
     private lateinit var backButton: ImageView
     private lateinit var searchButton: ImageView
+    private lateinit var linFragment: LinearLayout
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(com.isilon.beinconnect.R.layout.activity_main)
-
         tabLayout = findViewById(com.isilon.beinconnect.R.id.tabLayout)
         viewPager = findViewById(com.isilon.beinconnect.R.id.viewPager)
         backButton = findViewById(com.isilon.beinconnect.R.id.iv_backBtn)
         searchButton = findViewById(com.isilon.beinconnect.R.id.search_btn)
+        linFragment = findViewById(R.id.ln_fragment)
 
         tabLayout!!.addTab(tabLayout!!.newTab().setText("Yabancı Film"))
         tabLayout!!.addTab(tabLayout!!.newTab().setText("Yerli Film"))
@@ -61,13 +67,42 @@ class MainActivity : AppCompatActivity() {
         }
 
         searchButton.setOnClickListener {
-            val intent = Intent(this,SearchActivity::class.java)
-            startActivity(intent)
+            //linFragment.visibility = View.GONE
 
+            //startCountTimer()
+
+
+/*
+            try {
+                Handler().postDelayed({
+                    linFragment.visibility = View.VISIBLE
+                },5000)
+            }catch (e: Exception){
+
+            }
+
+*/
+
+            val transaction = supportFragmentManager.beginTransaction()
+            transaction.replace(com.isilon.beinconnect.R.id.fragmentContainerView, SearchFragment())
+            transaction.disallowAddToBackStack()
+            transaction.commit()
         }
 
 
+
     }
+
+
+    private fun startCountTimer() {
+        object : CountDownTimer(5000, 1000) {
+            override fun onTick(millisUntilFinished: Long) {}
+            override fun onFinish() {
+                    linFragment.visibility = View.VISIBLE
+            }
+        }.start()
+    }
+
 
 
     private fun backPressedBtn() {

@@ -3,114 +3,264 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:argType="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-
     tools:context=".ui.main.view.DetailFragment">
 
-    <LinearLayout
-        android:id="@+id/ln_detail_main"
-        android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:layout_gravity="center"
-        android:orientation="horizontal">
-        <ImageView
-            android:id="@+id/iv_detail_avatar"
-            android:layout_width="wrap_content"
-            android:layout_height="150dp"
-            android:layout_margin="5dp"/>
+
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:id="@+id/ln_detail_main"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                android:textColor="@android:color/background_dark"
-                android:text="Yetişkin"/>
 
             <TextView
-                android:id="@+id/tv_adult"
-                android:layout_width="wrap_content"
-                android:textSize="14sp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="10dp"
+                android:text="Movie Detail"
+                android:textColor="@color/black"
+                android:textSize="32dp" />
 
-                android:textColor="@android:color/background_dark"
+            <LinearLayout
+                android:id="@+id/linearLayout"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="5dp"/>
+                android:layout_marginTop="15dp">
 
-            <TextView
-                android:layout_width="wrap_content"
+
+                <ImageView
+                    android:id="@+id/iv_detail_avatar"
+                    android:layout_width="140dp"
+                    android:layout_height="210dp"
+                    android:layout_margin="20dp"
+                    android:scaleType="centerCrop" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginEnd="10dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Name"
+                        android:textColor="@color/black"
+                        android:textSize="18dp"
+                        android:textStyle="bold" />
+
+
+                    <TextView
+                        android:id="@+id/tv_movie_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:maxWidth="150dp"
+                        android:layout_gravity="center_horizontal"
+                        android:text="TEST"
+                        android:textSize="14dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textStyle="bold"
+                        android:text="Adult"
+                        android:textColor="@color/black"
+                        android:textSize="12dp" />
+
+                    <ImageView
+                        android:id="@+id/iv_adult"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:visibility="gone"
+                        android:src="@drawable/ic_baseline_filter_7_24"/>
+
+                    <ImageView
+                        android:id="@+id/iv_child"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:visibility="gone"
+                        android:src="@drawable/ic_baseline_child_filter_7_24"/>
+                    <!--
+                    <TextView
+                        android:id="@+id/tv_adult"                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:maxWidth="150dp"
+                        android:text=""
+                        android:textSize="14dp" />
+                    -->
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="20dp"
+                android:background="#BCB2B2" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                android:textColor="@android:color/background_dark"
-                android:text="Son Gösterim"/>
-            <TextView
-                android:id="@+id/tv_release_date"
-                android:layout_width="wrap_content"
-                android:textSize="14sp"
-                android:textColor="@android:color/background_dark"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginBottom="10dp">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight=".5"
+                    android:text="Release year:"
+                    android:textColor="@color/black"
+                    android:textSize="14dp" />
+
+                <TextView
+                    android:id="@+id/tv_release_date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:maxWidth="150dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_gravity="center"
+                    android:text=""
+                    android:textSize="14dp" />
+            </LinearLayout>
+
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#BCB2B2" />
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="5dp"/>
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginBottom="10dp">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight=".5"
+                    android:text="Language:"
+                    android:textColor="@color/black"
+                    android:textSize="14dp" />
+
+                <TextView
+                    android:id="@+id/movie_language"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="10dp"
+                    android:maxWidth="150dp"
+                    android:layout_gravity="center"
+                    android:text=""
+                    android:textSize="14dp" />
+            </LinearLayout>
+
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#BCB2B2" />
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginBottom="10dp">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight=".5"
+                    android:text="Overview:"
+                    android:textColor="@color/black"
+                    android:textSize="14dp" />
+
+                <TextView
+                    android:id="@+id/tv_movie_overview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="10dp"
+                    android:maxWidth="150dp"
+                    android:maxLength="80"
+                    android:layout_gravity="center"
+                    android:text=""
+                    android:textSize="14dp" />
+            </LinearLayout>
+
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#BCB2B2" />
+
+
         </LinearLayout>
-    </LinearLayout>
-    <LinearLayout
-        android:id="@+id/ln_btn_main"
-        android:layout_width="match_parent"
-        android:padding="5dp"
-        android:layout_height="150dp"
-        android:layout_gravity="center"
-        android:orientation="vertical"
-        >
-        <Button
+        <LinearLayout
+            android:id="@+id/ln_btn_main"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:background="#660099"
-            android:text="7 Gün Ücretsiz İzle"
-            android:textColor="@color/white"
-            android:textStyle="bold"/>
-        <Button
-            android:id="@+id/btn_fragman"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:background="#660099"
-            android:textColor="@color/white"
-            android:layout_marginTop="10dp"
-            android:text="Fragmanı İzle"
-            android:textStyle="bold"/>
+            android:padding="5dp"
+            android:layout_height="150dp"
+            android:layout_gravity="center"
+            android:orientation="vertical"
+            >
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="#660099"
+                android:text="7 Gün Ücretsiz İzle"
+                android:textColor="@color/white"
+                android:textStyle="bold"/>
+            <Button
+                android:id="@+id/btn_fragman"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="#660099"
+                android:textColor="@color/white"
+                android:layout_marginTop="10dp"
+                android:text="Fragmanı İzle"
+                android:textStyle="bold"/>
 
-    </LinearLayout>
-    <FrameLayout
-        xmlns:argType="http://schemas.android.com/tools"
-        android:id="@+id/flRoot"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:focusable="true"
-        android:keepScreenOn="true">
-
-        <com.google.android.exoplayer2.ui.StyledPlayerView
-            android:id="@+id/playerView"
+        </LinearLayout>
+        <FrameLayout
+            xmlns:argType="http://schemas.android.com/tools"
+            android:id="@+id/flRoot"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            argType:fastforward_increment="15000"
-            argType:resize_mode="fixed_width"
-            argType:rewind_increment="15000"
-            argType:show_buffering="when_playing"
-            argType:show_fastforward_button="true"
-            argType:show_next_button="false"
-            android:visibility="gone"
-            argType:show_previous_button="false"
-            argType:show_rewind_button="true"
-            argType:show_subtitle_button="true"
-            argType:use_artwork="true"
-            argType:use_controller="true"
-            argType:use_sensor_rotation="true">
+            android:focusable="true"
+            android:keepScreenOn="true">
 
-        </com.google.android.exoplayer2.ui.StyledPlayerView>
+            <com.google.android.exoplayer2.ui.StyledPlayerView
+                android:id="@+id/playerView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                argType:fastforward_increment="15000"
+                argType:resize_mode="fixed_width"
+                argType:rewind_increment="15000"
+                argType:show_buffering="when_playing"
+                argType:show_fastforward_button="true"
+                argType:show_next_button="false"
+                android:visibility="gone"
+                argType:show_previous_button="false"
+                argType:show_rewind_button="true"
+                argType:show_subtitle_button="true"
+                argType:use_artwork="true"
+                argType:use_controller="true"
+                argType:use_sensor_rotation="true">
 
-    </FrameLayout>
+            </com.google.android.exoplayer2.ui.StyledPlayerView>
+
+        </FrameLayout>
 
 
 
