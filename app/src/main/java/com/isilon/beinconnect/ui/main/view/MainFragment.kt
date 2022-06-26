@@ -29,6 +29,7 @@ import com.isilon.beinconnect.ui.main.adapter.ViewPagerAdapter
 import com.isilon.beinconnect.ui.main.viewmodel.BeinConnectViewModel
 import com.isilon.beinconnect.utils.Constants
 import com.isilon.beinconnect.utils.Status
+import kotlin.system.exitProcess
 
 
 class MainFragment : Fragment() {
@@ -152,20 +153,25 @@ class MainFragment : Fragment() {
             binding.lnViewpager.addView(dots[i], params)
         }
 
-        val urlText: String = images[0].toString()
+        try {
+            val urlText: String = images[0].toString()
 
-        Glide.with(requireContext())
-            .asBitmap()
-            .load(urlText)
+            Glide.with(requireContext())
+                .asBitmap()
+                .load(urlText)
 
-            .into(object : SimpleTarget<Bitmap?>() {
-                override fun onResourceReady(
-                    resource: Bitmap,
-                    transition: Transition<in Bitmap?>?
-                ) {
+                .into(object : SimpleTarget<Bitmap?>() {
+                    override fun onResourceReady(
+                        resource: Bitmap,
+                        transition: Transition<in Bitmap?>?
+                    ) {
 
-                }
-            })
+                    }
+                })
+        }catch (e: Exception){
+            e.printStackTrace()
+        }
+
 
         dots[0]!!.setImageDrawable(getDrawable(requireContext(), R.drawable.active_dots))
 
