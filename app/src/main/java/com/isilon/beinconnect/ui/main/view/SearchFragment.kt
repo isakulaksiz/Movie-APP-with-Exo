@@ -52,8 +52,9 @@ class SearchFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+
         searchView = view.findViewById(R.id.search_view)
-        progressBar = view.findViewById(R.id.progressBar)
+        progressBar = view.findViewById(R.id.progressBarSearch)
         recyclerView = view.findViewById(R.id.searchRecyclerView)
         btnCancel = view.findViewById(R.id.btn_cancel)
 
@@ -61,8 +62,12 @@ class SearchFragment : Fragment() {
         setUpViewModel()
         setUpObserver()
 
+
+
         btnCancel.setOnClickListener {
-            //TODO: should be search text null
+            searchView.clearFocus()
+            searchView.setQuery("", false)
+            searchView.isIconified = true
         }
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener{
             override fun onQueryTextSubmit(query: String?): Boolean {
