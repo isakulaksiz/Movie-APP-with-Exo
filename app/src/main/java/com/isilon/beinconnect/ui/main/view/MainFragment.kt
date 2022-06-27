@@ -173,48 +173,53 @@ class MainFragment : Fragment() {
         }
 
 
-        dots[0]!!.setImageDrawable(getDrawable(requireContext(), R.drawable.active_dots))
+        try{
+            dots[0]!!.setImageDrawable(getDrawable(requireContext(), R.drawable.active_dots))
 
-        binding.viewpager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
+            binding.viewpager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
 
 
-            override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {}
-            @SuppressLint("SetTextI18n")
-            override fun onPageSelected(position: Int) {
-                var i = 0
-                while (i < dotscount) {
-                    dots[i]!!.setImageDrawable(
+                override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {}
+                @SuppressLint("SetTextI18n")
+                override fun onPageSelected(position: Int) {
+                    var i = 0
+                    while (i < dotscount) {
+                        dots[i]!!.setImageDrawable(
+                            getDrawable(
+                                requireContext(),
+                                R.drawable.non_activedots
+                            )
+                        )
+                        val urlText: String = images[i].toString()
+
+                        Glide.with(requireContext())
+                            .asBitmap()
+                            .load(urlText)
+                            .into(object : SimpleTarget<Bitmap?>() {
+                                override fun onResourceReady(
+                                    resource: Bitmap,
+                                    transition: Transition<in Bitmap?>?
+                                ) {
+
+                                }
+                            })
+                        i++
+                    }
+                    dots[position]!!.setImageDrawable(
                         getDrawable(
                             requireContext(),
-                            R.drawable.non_activedots
+                            R.drawable.active_dots
                         )
                     )
-                    val urlText: String = images[i].toString()
-
-                    Glide.with(requireContext())
-                        .asBitmap()
-                        .load(urlText)
-                        .into(object : SimpleTarget<Bitmap?>() {
-                            override fun onResourceReady(
-                                resource: Bitmap,
-                                transition: Transition<in Bitmap?>?
-                            ) {
-
-                            }
-                        })
-                    i++
                 }
-                dots[position]!!.setImageDrawable(
-                    getDrawable(
-                        requireContext(),
-                        R.drawable.active_dots
-                    )
-                )
-            }
 
-            override  fun onPageScrollStateChanged(state: Int) {
+                override  fun onPageScrollStateChanged(state: Int) {
 
-            }
-        })
+                }
+            })
+        }catch (e: Exception){
+            e.printStackTrace()
+        }
+
     }
 }
