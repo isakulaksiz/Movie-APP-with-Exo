@@ -51,11 +51,15 @@
     - ExoPlayer [Media Player]
 
 
-## JSON
+## JSON MAIN
 ```sh
 https://api.themoviedb.org/3/discover/movie?api_key=92b975410b217a6ca13099b35bf4be46&page=1
 ```
 
+## JSON SEARCH
+```sh
+https://api.themoviedb.org/3/search/movie/?api_key=92b975410b217a6ca13099b35bf4be46&query=spider man no way home
+```
 ```json
 {
 	"page": 1,
