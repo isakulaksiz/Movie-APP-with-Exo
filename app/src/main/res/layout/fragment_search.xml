@@ -38,7 +38,7 @@
             android:visibility="gone"
             />
         <ProgressBar
-            android:id="@+id/progressBar"
+            android:id="@+id/progressBarSearch"
             android:foregroundGravity="center"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

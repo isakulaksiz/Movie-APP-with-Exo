@@ -109,7 +109,6 @@ class DetailFragment : Fragment() {
             binding.ivAdult.visibility = View.VISIBLE
         }else
             binding.ivChild.visibility = View.VISIBLE
-        //binding.tvAdult.text = adult.toString()
         binding.tvReleaseDate.text = releaseDate
         binding.tvMovieTitle.text = title
         binding.movieLanguage.text = lang

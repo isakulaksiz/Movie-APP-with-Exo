@@ -16,10 +16,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.isilon.beinconnect.R
 import com.isilon.beinconnect.data.model.Result
-import com.isilon.beinconnect.ui.main.view.DetailFragment
-import com.isilon.beinconnect.ui.main.view.MainActivity
-import com.isilon.beinconnect.ui.main.view.MainFragmentDirections
-import com.isilon.beinconnect.ui.main.view.SearchFragmentDirections
+import com.isilon.beinconnect.ui.main.view.*
 
 class SearchAdapter(private val data: ArrayList<Result>): RecyclerView.Adapter<SearchAdapter.DataViewHolder>() {
 
@@ -68,8 +65,7 @@ class SearchAdapter(private val data: ArrayList<Result>): RecyclerView.Adapter<S
             Log.e("SActionOverview",searchAction.overview.toString())
             Log.e("SActionLang",searchAction.originalLanguage.toString())
             Log.e("SActionDate",searchAction.releaseDate.toString())
-            //val navController = Navigation.findNavController(holder.itemView)
-            //navController.navigate(searchAction)
+
             try {
                 //val navController = Navigation.findNavController(holder.itemView)
                 //navController.navigate(searchAction)
