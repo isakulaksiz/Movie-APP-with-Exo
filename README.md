@@ -1,7 +1,5 @@
 # BeinConnectClone - Movie App
-<p align="center">
- <img src="https://play-lh.googleusercontent.com/ojJC2ML7PlN29TPWreEtJOqmKBktv43ZBo9y399K17TvdujxgoI20jxTFE9xla-_lto">
-</p>
+
 <p align="center">
 <img width="326" alt="1" src="https://user-images.githubusercontent.com/26628508/175878520-0974d880-c1f4-4e8e-92ba-723af38df33b.png">
 <img width="326" alt="2" src="https://user-images.githubusercontent.com/26628508/175878703-dc9ff61f-e502-485d-93e6-e0dda13bcdf2.png">
